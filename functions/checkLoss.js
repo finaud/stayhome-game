@@ -24,13 +24,16 @@ const checkLoss = (change, context) => {
         oldData['currentLocation'].longitude, oldData['currentLocation'].latitude],
         [oldData['homeLocation'].longitude, oldData['homeLocation'].latitude], distance)) {
         for (let group of newData['groups']) {
-
-            // Create a notification if someone is eliminated
-            group.collection('notifications').add({
-                text: 'Oh no! ' + newData['name'] + ' has left their house!',
-            }).then(ref => {
-                console.log('Added notification with ID: ', ref.id);
-            });
+            group.get().then(doc => {
+                if (doc.data()['status'] === 'ACTIVE') {
+                    // Create a notification if someone is eliminated
+                    group.collection('notifications').add({
+                        text: 'Oh no! ' + newData['name'] + ' has left their house!',
+                    }).then(ref => {
+                        console.log('Added notification with ID: ', ref.id);
+                    });
+                }
+            })
 
             // Removes user from the participating group members and adds them to those eliminated
             group.update({
