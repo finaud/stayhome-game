@@ -3,17 +3,11 @@ const {
     db,
 } = require('./admin');
 
-/**
- * Reads a doc from Firestore and sends it's data in the response.
- *
- * @param {Object} req Express Request Object
- * @param {Object} res Express Request Object
- */
 const addMessage = (data, context) => {
 
     // Message text passed from the client.
     const text = data.text;
-    const uid = data.uid;
+    const username = data.username;
 
     // Checking attribute.
     if (!(typeof text === 'string') || text.length === 0) {
@@ -26,7 +20,7 @@ const addMessage = (data, context) => {
     const sanitizedMessage = "sanitized: " + text; // Sanitize the message.
     return db.collection('cities').doc('LA').set({
         text: sanitizedMessage,
-        author: uid,
+        user: username,
     }).then(() => {
         console.log('New Message written');
         // Returning the sanitized message to the client.
