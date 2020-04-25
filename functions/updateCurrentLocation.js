@@ -14,12 +14,10 @@ const updateCurrentLocation = (data, context) => {
         currentLocation: new admin.firestore.GeoPoint(lat, lon)
     }).then(() => {
         console.log('Location updated for ' + username);
-        // Returning the sanitized message to the client.
         return { msg: "success" };
     })
 
         .catch((error) => {
-            // Re-throwing the error as an HttpsError so that the client gets the error details.
             throw new functions.https.HttpsError('unknown', error.message, error);
         });
 }

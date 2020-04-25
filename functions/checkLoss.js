@@ -7,7 +7,6 @@ let FieldValue = admin.firestore.FieldValue;
 
 // Something wrong here idek
 const geolib = require('geolib');
-import { isPointWithinRadius } from 'geolib';
 
 const distance = 500;
 
@@ -20,7 +19,7 @@ const checkLoss = (change, context) => {
     if (oldData['currentLocation'] === newData['currentLocation']) {
         // Throwing an HttpsError so that the client gets the error details.
         throw new functions.https.HttpsError('invalid-argument', 'Location hasn\'t changed');
-    } else if (!isPointWithinRadius([
+    } else if (!window.isPointWithinRadius([
         oldData['currentLocation'].longitude, oldData['currentLocation'].latitude],
         [oldData['homeLocation'].longitude, oldData['homeLocation'].latitude], distance)) {
         for (let group of newData['groups']) {
