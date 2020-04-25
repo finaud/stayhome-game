@@ -3,22 +3,18 @@ const {
     db,
 } = require('./admin');
 
-const addUser = (data, context) => {
+const updateGroupStatus = (data, context) => {
 
     // Message info passed from the client.
     const name = data.name;
-    const username = data.username;
-    const email = data.email;
-    const friends = [];
-    const groups = [];
+    const status = data.status;
 
-    // Saving the new message to the Realtime Database.
-    return db.collection('users').doc(username).set({
-        name, username, email, friends, groups
+    return db.collection('groups').doc(name).update({
+        status: status
     }).then(() => {
-        console.log('New user created: ' + username);
+        console.log(`Group ${name} has changes to ${status}`);
         // Returning the sanitized message to the client.
-        return { msg: "success" };
+        return { msg: `Successfully updated group status` };
     })
 
         .catch((error) => {
@@ -27,4 +23,4 @@ const addUser = (data, context) => {
         });
 }
 
-module.exports = addUser;
+module.exports = updateGroupStatus;
