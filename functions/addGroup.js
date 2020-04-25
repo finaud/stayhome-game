@@ -7,9 +7,10 @@ const addGroup = (data, context) => {
 
     // Message info passed from the client.
     const name = data.name;
-    const host = data.host;
-    const limit = data.limit;
-    const numWinners = data.numWinners;
+    const host = db.collection('users').doc(data.host);
+    const limit = parseInt(data.limit);
+    const buyIn = parseFloat(data.buyIn);
+    const numWinners = parseInt(data.numWinners);
 
     return db.collection('groups').doc(name).set({
         name, host, limit, numWinners
