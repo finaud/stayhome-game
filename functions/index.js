@@ -7,6 +7,8 @@ const addUser = require('./addUser');
 const addGroup = require('./addGroup');
 const addFriend = require('./addFriend');
 const getFriends = require('./getFriends');
+const updateGroupStatus = require('./updateGroupStatus');
+
 
 
 module.exports = {
@@ -15,5 +17,5 @@ module.exports = {
     'addGroup': functions.https.onCall(addGroup),
     'addFriend': functions.https.onCall(addFriend),
     'getFriends': functions.https.onCall(getFriends),
-
+    'updateGroupStatus': functions.https.onCall(updateGroupStatus),
 };
