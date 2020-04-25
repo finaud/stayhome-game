@@ -3,21 +3,21 @@ const {
     db,
 } = require('./admin');
 
-const addUser = (data, context) => {
+const addGroup = (data, context) => {
 
     // Message info passed from the client.
     const name = data.name;
-    const username = data.username;
-    const email = data.email;
-    const friends = [];
+    const host = data.host;
+    const limit = data.limit;
+    const numWinners = data.numWinners;
 
     // Saving the new message to the Realtime Database.
-    return db.collection('users').doc(username).set({
-        name, username, email, friends
+    return db.collection('groups').doc(name).add({
+        name, host, limit, numWinners
     }).then(() => {
-        console.log('New user created: ' + username);
+        console.log('New group created: ' + name);
         // Returning the sanitized message to the client.
-        return { msg: "success" };
+        return { msg: `Successfully created group ${name}` };
     })
 
         .catch((error) => {
@@ -26,4 +26,4 @@ const addUser = (data, context) => {
         });
 }
 
-module.exports = addUser;
+module.exports = addGroup;
