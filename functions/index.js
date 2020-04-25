@@ -12,6 +12,8 @@ const getFriends = require('./getFriends');
 const updateGroupStatus = require('./updateGroupStatus');
 const getGroups = require('./getGroups');
 const getGroup = require('./getGroup');
+const getUser = require('./getUser');
+
 
 module.exports = {
     'addMessage': functions.https.onCall(addMessage),
@@ -24,4 +26,6 @@ module.exports = {
     'updateGroupStatus': functions.https.onCall(updateGroupStatus),
     'getGroups': functions.https.onCall(getGroups),
     'getGroup': functions.https.onCall(getGroup),
+    'getUser': functions.https.onCall(getUser),
+
 };
