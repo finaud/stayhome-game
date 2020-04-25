@@ -11,8 +11,7 @@ const addGroup = (data, context) => {
     const limit = data.limit;
     const numWinners = data.numWinners;
 
-    // Saving the new message to the Realtime Database.
-    return db.collection('groups').doc(name).add({
+    return db.collection('groups').doc(name).set({
         name, host, limit, numWinners
     }).then(() => {
         console.log('New group created: ' + name);
