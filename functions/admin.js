@@ -8,4 +8,5 @@ const db = admin.firestore();
 module.exports = {
     functions,
     db,
+    admin,
 }
