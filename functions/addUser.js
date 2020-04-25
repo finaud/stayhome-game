@@ -11,7 +11,7 @@ const addUser = (data, context) => {
     const email = data.email;
 
     // Saving the new message to the Realtime Database.
-    return db.collection('users').doc(username).add({
+    return db.collection('users').doc(username).set({
         name, username, email
     }).then(() => {
         console.log('New user created: ' + username);
