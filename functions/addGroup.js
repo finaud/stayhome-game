@@ -13,7 +13,7 @@ const addGroup = (data, context) => {
     const numWinners = parseInt(data.numWinners);
 
     return db.collection('groups').doc(name).set({
-        name, host, limit, numWinners, status: "PENDING"
+        name, host, limit, numWinners, buyIn, status: "PENDING"
     }).then(() => {
         console.log('New group created: ' + name);
         // Returning the sanitized message to the client.
