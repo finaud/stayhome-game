@@ -10,10 +10,11 @@ const addUser = (data, context) => {
     const username = data.username;
     const email = data.email;
     const friends = [];
+    const groups = [];
 
     // Saving the new message to the Realtime Database.
     return db.collection('users').doc(username).set({
-        name, username, email, friends
+        name, username, email, friends, groups
     }).then(() => {
         console.log('New user created: ' + username);
         // Returning the sanitized message to the client.
