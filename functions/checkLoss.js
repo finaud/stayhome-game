@@ -9,6 +9,12 @@ const geolib = require('geolib');
 
 const distance = 500;
 
+const phrases = [
+    " has left their home! SHAME THEM!",
+    " loves going outside during pandemics! Let it be known!",
+    " forgot to leave their phone at home before sneaking out..."
+];
+
 const checkLoss = (change, context) => {
 
     const oldData = change.before.data();
@@ -30,8 +36,11 @@ const checkLoss = (change, context) => {
             group.get().then(doc => {
                 if (doc.data()['status'] === 'ACTIVE') {
                     // Create a notification if someone is eliminated
-                    group.collection('notifications').add({
-                        text: 'Oh no! ' + newData['name'] + ' has left their house!',
+
+                    let phr = phrases[Math.floor(Math.random() * phrases.length)];
+
+                    db.collection('shames').add({
+                        text: `${newData['name']} ${phr}`,
                     }).then(ref => {
                         console.log('Added notification with ID: ', ref.id);
                     });
@@ -41,7 +50,6 @@ const checkLoss = (change, context) => {
                         participants: FieldValue.arrayRemove(change.after.ref),
                         eliminated: FieldValue.arrayUnion(change.after.ref),
                     })
-
                     // Notify other group members
                     group.get().then(snap => {
                         snap.data()['participants'].forEach(participant => {

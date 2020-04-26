@@ -17,6 +17,7 @@ const messagingTest = require('./messagingTest');
 const inviteToGroup = require('./inviteToGroup');
 const getGroupLocationData = require('./getGroupLocationData');
 const checkFinishedGame = require('./checkFinishedGame');
+const getShames = require('./getShames');
 
 module.exports = {
     'addMessage': functions.https.onCall(addMessage),
@@ -34,4 +35,5 @@ module.exports = {
     'inviteToGroup': functions.https.onCall(inviteToGroup),
     'getGroupLocationData': functions.https.onCall(getGroupLocationData),
     'checkFinishedGame': functions.firestore.document('groups/{group}').onUpdate(checkFinishedGame),
+    'getShames': functions.https.onCall(getShames),
 };
