@@ -20,7 +20,26 @@ const addFriend = (data, context) => {
         }).then(() => {
             console.log(`added ${ref1.id} and ${ref2.id} as friends`);
             // Returning the sanitized message to the client.
-            return { msg: "success" };
+        }).then(() => {
+        ref2.get().then(doc => {
+            const message = {  notification: {
+                    title: `Friend Update`,
+                    body: `${data.username} added you as a friend!`,
+                },
+                token: doc.data()['token']
+            };
+
+            admin.messaging().send(message)
+                .then((response) => {
+                    // Response is a message ID string.
+                    console.log('Successfully sent message:', response);
+                })
+                .catch((error) => {
+                    console.log('Error sending message:', error);
+                });
+        });
+
+        return { msg: "success" };
     })
         .catch((error) => {
             // Re-throwing the error as an HttpsError so that the client gets the error details.
