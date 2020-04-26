@@ -15,6 +15,8 @@ const getGroup = require('./getGroup');
 const getUser = require('./getUser');
 const messagingTest = require('./messagingTest');
 const inviteToGroup = require('./inviteToGroup');
+const getGroupLocationData = require('./getGroupLocationData');
+
 
 
 module.exports = {
@@ -31,4 +33,5 @@ module.exports = {
     'getUser': functions.https.onCall(getUser),
     'messagingTest': functions.https.onRequest(messagingTest),
     'inviteToGroup': functions.https.onCall(inviteToGroup),
+    'getGroupLocationData': functions.https.onCall(getGroupLocationData),
 };
