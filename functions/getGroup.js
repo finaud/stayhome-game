@@ -4,7 +4,7 @@ const {
 } = require('./admin');
 
 const getGroup = (data, context) => {
-    const name = data.name;
+    const groupname = data.group;
 
     async function get_users (user_array)  {
         let tmp = [];
@@ -23,7 +23,7 @@ const getGroup = (data, context) => {
         return tmp;
     };
 
-    return db.collection('groups').doc(name).get()
+    return db.collection('groups').doc(groupname).get()
         .then(async snap => {
             let snap_data = snap.data();
             data = {
@@ -32,7 +32,7 @@ const getGroup = (data, context) => {
                     username: snap_data['host'].id,
                     name: await snap_data['host'].get().then(snap => { return snap.data()['name']} )
                 },
-                limit: snap_data['buyIn'],
+                limit: snap_data['limit'],
                 name: snap_data['name'],
                 numWinners: snap_data['numWinners'],
                 status: snap_data['status'],
