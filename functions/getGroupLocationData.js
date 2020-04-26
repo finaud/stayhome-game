@@ -14,10 +14,9 @@ const getGroupLocationData = (data, context) => {
                 await user_ref.get().then(user_snap => {
                     let username = user_ref.id;
                     let coords = user_snap.data()['currentLocation'];
-                    data.push({[username]: [coords.longitude, coords.latitude]});
+                    data.push({[username]: [parseFloat(coords.latitude), parseFloat(coords.longitude)]});
                 })
             }
-
             return {locations: data};
         })
 
