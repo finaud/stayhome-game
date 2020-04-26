@@ -16,3 +16,8 @@ Functions can be accessed through the Firebase SDK for Cloud Functions, detailed
 
 ## Contributing
 Simply create a new pull request that includes your function's .js file, in addition to an updated `index.js` that includes the newly-created function.
+
+<p float="left">
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/Login.png" width="400" />
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/Signup.png" width="400" /> 
+</p>
