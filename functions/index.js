@@ -17,7 +17,6 @@ const messagingTest = require('./messagingTest');
 const inviteToGroup = require('./inviteToGroup');
 
 
-
 module.exports = {
     'addMessage': functions.https.onCall(addMessage),
     'addUser': functions.https.onCall(addUser),
