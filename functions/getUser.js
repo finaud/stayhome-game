@@ -12,10 +12,15 @@ const getUser = (data, context) => {
                 return {msg: 'No matching documents.'};
             }
 
+            let tmp;
+
             // Assuming only one email in the database for each user
             snap.forEach(doc => {
-                return {username: doc.data()['username']};
+                tmp = doc.data()['username'];
             });
+
+            return {username: tmp};
+
         })
 
         .catch((error) => {

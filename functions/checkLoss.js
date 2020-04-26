@@ -14,6 +14,8 @@ const checkLoss = (change, context) => {
     const oldData = change.before.data();
     const newData = change.after.data();
 
+    const name = newData['name'];
+
     // Checking the location has changed
     if (oldData['currentLocation'] === newData['currentLocation']) {
         // Throwing an HttpsError so that the client gets the error details.
@@ -39,6 +41,29 @@ const checkLoss = (change, context) => {
                         participants: FieldValue.arrayRemove(change.after.ref),
                         eliminated: FieldValue.arrayUnion(change.after.ref),
                     })
+
+                    // Notify other group members
+                    group.get().then(snap => {
+                        snap.data()['participants'].forEach(participant => {
+                            participant.get().then(participant_snap => {
+                                const message = {  notification: {
+                                        title: `Group ${group.id} Update`,
+                                        body: `${name} has left their house! Check the app to see who is abiding stay-at-home!`,
+                                    },
+                                    token: participant_snap.data()['token']
+                                };
+
+                                admin.messaging().send(message)
+                                    .then((response) => {
+                                        // Response is a message ID string.
+                                        console.log('Successfully sent message:', response);
+                                    })
+                                    .catch((error) => {
+                                        console.log('Error sending message:', error);
+                                    });
+                            })
+                        })
+                    });
                 }
             })
         }
