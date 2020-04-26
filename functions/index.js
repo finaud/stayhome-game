@@ -15,7 +15,6 @@ const getGroup = require('./getGroup');
 const getUser = require('./getUser');
 const messagingTest = require('./messagingTest');
 
-
 module.exports = {
     'addMessage': functions.https.onCall(addMessage),
     'addUser': functions.https.onCall(addUser),
@@ -29,5 +28,4 @@ module.exports = {
     'getGroup': functions.https.onCall(getGroup),
     'getUser': functions.https.onCall(getUser),
     'messagingTest': functions.https.onRequest(messagingTest),
-
 };
