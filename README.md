@@ -20,4 +20,8 @@ Simply create a new pull request that includes your function's .js file, in addi
 <p float="left">
   <img src="https://github.com/Olivia-li/hacknow/blob/media/Login.png" width="400" />
   <img src="https://github.com/Olivia-li/hacknow/blob/media/Signup.png" width="400" /> 
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/groups.png" width="400" />
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/map.png" width="400" /> 
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/friend.png" width="400" />
+  <img src="https://github.com/Olivia-li/hacknow/blob/media/shame.png" width="400" /> 
 </p>
