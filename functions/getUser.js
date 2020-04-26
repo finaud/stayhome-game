@@ -16,10 +16,10 @@ const getUser = (data, context) => {
 
             // Assuming only one email in the database for each user
             snap.forEach(doc => {
-                tmp = doc.data()['username'];
+                tmp = doc.data()            
             });
 
-            return {username: tmp};
+            return tmp;
 
         })
 
