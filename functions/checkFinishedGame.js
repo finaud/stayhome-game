@@ -22,6 +22,26 @@ const checkFinishedGame = (change, context) => {
             status: "FINISHED"
         });
 
+        db.collection('users').doc(winner).get().then(doc => {
+            const message = {  notification: {
+                    title: `Group ${newData['name']} Update`,
+                    body: `$You have won the game!`,
+                },
+                token: doc.data()['token']
+            };
+
+            admin.messaging().send(message)
+                .then((response) => {
+                    // Response is a message ID string.
+                    console.log('Successfully sent message:', response);
+                })
+                .catch((error) => {
+                    console.log('Error sending message:', error);
+                });
+
+            console.log(`Notified ${doc.data()['name']}`);
+        });
+
         for (let user of newData['eliminated']) {
             user.get().then(doc => {
                 const message = {  notification: {
